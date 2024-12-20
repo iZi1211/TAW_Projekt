@@ -1,0 +1,36 @@
+
+
+<div class="container">
+<div class="login-form">
+  <h2>Login</h2>
+
+  <form (submit)="HandleLoginPress()">
+    <label for="username">Username:</label>
+    <input
+      type="text"
+      id="username"
+      [value]="username"
+      (input)="onUsernameInput($event)"
+      required
+    />
+
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      id="password"
+      [value]="password"
+      (input)="onPasswordInput($event)"
+      required
+    />
+
+    <button type="submit">Login</button>
+  </form>
+
+  <div *ngIf="modalVisible" class="modal">
+    <div class="modal-content">
+      <p>{{ popupText }}</p>
+      <button (click)="closePopup()">Close</button>
+    </div>
+  </div>
+</div>
+</div>

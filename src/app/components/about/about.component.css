@@ -1,0 +1,39 @@
+/* About Component - about.component.css */
+
+.about-container {
+  width: 100%;
+  max-width: 600px; /* Limit the width for readability */
+  margin: 80px auto; /* Center the container */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+strong {
+  color: #4caf50; 
+}
+
+body {
+  background-color: #f0f0f0; 
+}
+
+@media (max-width: 600px) {
+  .about-container {
+    max-width: 90%; 
+  }
+}

@@ -1,0 +1,24 @@
+
+<div *ngIf="isLoggedIn; else notLoggedIn">
+  <h2>Leaderboard</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>User</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ranking of rankings; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ ranking.user }}</td>
+        <td>{{ ranking.score }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #notLoggedIn>
+  <p>Please log in to view the leaderboard.</p>
+</ng-template>

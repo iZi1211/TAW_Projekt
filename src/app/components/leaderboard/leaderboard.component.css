@@ -1,0 +1,38 @@
+.leaderboard-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  td {
+    font-size: 1.2rem;
+  }
+  
+  ng-template {
+    font-size: 1.2rem;
+    color: #555;
+  }
+
+  h2 {
+    text-align: center;
+  }
+  

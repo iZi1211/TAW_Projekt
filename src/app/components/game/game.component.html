@@ -1,0 +1,24 @@
+<div class="game-container">
+    <div class="stats-container">
+      <div>Score: {{ score }}</div>
+      <div>Timer: {{ timer }}s</div>
+      <div>Lives: {{ lives }}</div>
+    </div>
+    <div class="grid">
+      <div
+        *ngFor="let tile of tiles"
+        [ngClass]="{ flipped: tile.isFlipped, matched: tile.matched }"
+        class="tile"
+        (click)="handleTilePress(tile.id)"
+      >
+        <img
+          *ngIf="tile.isFlipped"
+          [src]="tile.image"
+          class="tile-image"
+        />
+        <img *ngIf="!tile.isFlipped" [src]="backImg" class="tile-placeholder" />
+      </div>
+    </div>
+
+  </div>
+  

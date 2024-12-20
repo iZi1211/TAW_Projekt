@@ -1,0 +1,93 @@
+
+.container {
+  font-family: 'Arial', sans-serif;
+  background-color: #fff; 
+  color: #333; 
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+
+.top-left-buttons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+button.login-btn,
+button.register-btn,
+button.logout-btn {
+  background-color: #4a90e2; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-right: 10px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.login-btn:hover,
+button.register-btn:hover {
+  background-color: #3a7bc2;
+}
+
+button.logout-btn {
+  background-color: #f44336; 
+}
+
+button.logout-btn:hover {
+  background-color: #d7352a;
+}
+
+
+.main-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 50px;
+}
+
+button {
+  background-color: #4caf50; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 200px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+button:active {
+  background-color: #3e8e41;
+}
+
+
+@media (max-width: 768px) {
+  button {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+  .top-left-buttons button {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+}

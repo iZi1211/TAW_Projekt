@@ -1,0 +1,84 @@
+/* Activate Component - activate.component.css */
+
+.container {
+    width: 100%;
+    max-width: 400px; /* Matches other form components like login/register */
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: center; 
+  }
+  
+  label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #444;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #4caf50; 
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  button:active {
+    background-color: #3e8e41;
+  }
+  
+  button[disabled] {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  
+  body {
+    background-color: #f0f0f0; 
+  }
+  
+  @media (max-width: 600px) {
+    .container {
+      max-width: 90%; 
+    }
+  }
+  

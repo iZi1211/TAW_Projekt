@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Activate Account</h2>
+  
+
+    <p>{{ activationMessage }}</p>
+  
+
+  
+
+    <div >
+      <label for="activationCode">Enter Activation Code:</label>
+      <input type="text" id="activationCode" [(ngModel)]="activationCode" placeholder="Activation Code" />
+  
+      <button (click)="activateUser()">Activate</button>
+    </div>
+
+  
+        <div *ngIf="!activationMessage || activationMessage.indexOf('sent') === -1">
+          <button (click)="sendActivationCode()">Send Activation Code</button>
+        </div>
+  </div>
+  

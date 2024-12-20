@@ -1,0 +1,25 @@
+<div class="container">
+ 
+  <div class="top-left-buttons">
+    <ng-container *ngIf="!isLoggedIn; else loggedIn">
+      
+      <button class="login-btn" (click)="goTo('/login')">Login</button>
+      <button class="register-btn" (click)="goTo('/register')">Register</button>
+    </ng-container>
+
+    <ng-template #loggedIn>
+    
+      <button class="logout-btn" (click)="handleLogout()">Logout</button>
+    </ng-template>
+  </div>
+
+  
+  <div class="main-content">
+    <h1>welcome to the game!</h1>
+
+    
+    <button (click)="goTo('/game')">Game</button>
+    <button (click)="goTo('/leaderboard')">Leaderboard</button>
+    <button (click)="goTo('/about')">Information</button>
+  </div>
+</div>
