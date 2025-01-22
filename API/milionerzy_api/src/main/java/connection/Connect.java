@@ -12,10 +12,10 @@ public class Connect {
 
     private String port = "5432";//wymagane kiedy nie jest domyślny dla bazy
 
-    private String dbname = "2023_ciura_damian";
-    private String user = "2023_ciura_damian";
+    private String dbname = "2023_warmuz_wiktor";
+    private String user = "2023_warmuz_wiktor";
 
-    private String url = "jdbc:postgresql://" + host+":"+port + "/" + dbname; private String pass = "35192";
+    private String url = "jdbc:postgresql://" + host+":"+port + "/" + dbname; private String pass = "35243";
     private Connection connection;
 
     public Connect() {

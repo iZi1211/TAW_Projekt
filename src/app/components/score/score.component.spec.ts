@@ -45,7 +45,7 @@ describe('ScoreComponent', () => {
     mockRouter = TestBed.inject(Router) as jasmine.SpyObj<Router>;
 
     // Set up localStorage mock
-    localStorage.setItem('username', 'testUser');
+    localStorage.setItem('loggedInUser', 'testUser');
 
     // Arrange: Mock the apiService.sendScore method to return a successful observable
     apiService.sendScore.and.returnValue(of('Score sent successfully'));
@@ -113,7 +113,7 @@ describe('ScoreComponent', () => {
 
     // Assert
     expect(component.login).toBe('testUser');
-    expect(localStorage.getItem).toHaveBeenCalledWith('username');
+    expect(localStorage.getItem).toHaveBeenCalledWith('loggedInUser');
   });
 
   it('should call navigateHome() when navigation is triggered', () => {

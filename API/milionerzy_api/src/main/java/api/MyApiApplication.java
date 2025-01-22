@@ -46,48 +46,7 @@ public class MyApiApplication {
     }
 
 
-    @GetMapping("/question")
-    public String getQuestion(@RequestParam(name = "roundNumber") String roundNumber) {
-        Connect connect = new Connect();
-        Connection connection = connect.getConnection();
-        String pytanie = "blad";
-        if (connection != null) {
-            try {
-                // Tworzenie zapytania SQL
-                String query = "SELECT * FROM milionerzy.pytania WHERE numer_rundy = "+roundNumber;
-                Random random = new Random();
-                int randomNumber = random.nextInt(10)+1;
-                pytanie += randomNumber;
-                // Wykonanie zapytania
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
 
-                // Przetwarzanie wyników zapytania
-                for(int i = 0; i < randomNumber; i++) {
-                    resultSet.next();
-                }
-                // Pobieranie wartości z kolumn w wyniku zapytania
-
-                pytanie = resultSet.getString("tresc");
-                pytanie += "/"+resultSet.getString("odpowiedz_a");
-                pytanie += "/"+resultSet.getString("odpowiedz_b");
-                pytanie += "/"+resultSet.getString("odpowiedz_c");
-                pytanie += "/"+resultSet.getString("odpowiedz_d");
-                pytanie += "/"+resultSet.getString("prawidlowa");
-
-                // Zamknięcie obiektów ResultSet i Statement
-                resultSet.close();
-                statement.close();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                connect.close(); // Zamknięcie połączenia
-            }
-
-        }
-        return pytanie;
-    }
 
     @GetMapping("/ranking")
     public String getRanking(){
@@ -97,7 +56,7 @@ public class MyApiApplication {
         if (connection != null) {
             try {
                 // Tworzenie zapytania SQL
-                String query = "SELECT tabilca_wynikow.wynik, uzytkownicy.login FROM milionerzy.tabilca_wynikow INNER JOIN milionerzy.uzytkownicy ON tabilca_wynikow.uzytkownik=uzytkownicy.id_uzytkownika ORDER BY wynik DESC LIMIT 10";
+                String query = "SELECT tablica_wynikow.wynik, uzytkownicy.login FROM memorycard.tablica_wynikow INNER JOIN memorycard.uzytkownicy ON tablica_wynikow.uzytkownik=uzytkownicy.id_uzytkownika ORDER BY wynik DESC LIMIT 10";
 
 
                 // Wykonanie zapytania
@@ -134,7 +93,7 @@ public class MyApiApplication {
         if (connection != null) {
             try {
                 // Tworzenie zapytania SQL
-                String query = "SELECT id_uzytkownika FROM milionerzy.uzytkownicy WHERE login = ? AND haslo = ?";
+                String query = "SELECT id_uzytkownika FROM memorycard.uzytkownicy WHERE login = ? AND haslo = ?";
 
                 PreparedStatement statement = connection.prepareStatement(query);
 
@@ -179,7 +138,7 @@ public class MyApiApplication {
                 connection.setAutoCommit(false); // włączenie ręcznego zarządzania transakcjami
 
                 // Tworzenie zapytania SQL
-                String query = "SELECT id_uzytkownika FROM milionerzy.uzytkownicy WHERE login = ?";
+                String query = "SELECT id_uzytkownika FROM memorycard.uzytkownicy WHERE login = ?";
 
                 PreparedStatement statement = connection.prepareStatement(query);
 
@@ -199,7 +158,7 @@ public class MyApiApplication {
                 }else {
 
                     // Utworzenie zapytania SQL
-                    query = "INSERT INTO milionerzy.uzytkownicy (login, haslo, mail, aktywowane) VALUES (?, ?, ?, false)";
+                    query = "INSERT INTO memorycard.uzytkownicy (login, haslo, mail, aktywowane) VALUES (?, ?, ?, false)";
 
                     PreparedStatement statement2 = connection.prepareStatement(query);
                     statement2.setString(1, login);
@@ -248,7 +207,7 @@ public class MyApiApplication {
 
 
                 // Utworzenie zapytania SQL
-                String query = "INSERT INTO milionerzy.tabilca_wynikow (uzytkownik,wynik) VALUES((SELECT id_uzytkownika FROM milionerzy.uzytkownicy WHERE login = ?),?)";
+                String query = "INSERT INTO memorycard.tablica_wynikow (uzytkownik,wynik) VALUES((SELECT id_uzytkownika FROM memorycard.uzytkownicy WHERE login = ?),?)";
 
                 // Przygotowanie instrukcji SQL z parametrami
                 PreparedStatement statement2 = connection.prepareStatement(query);
@@ -290,8 +249,8 @@ public class MyApiApplication {
 
         if (connection != null) {
             try {
-                String query = "SELECT kod FROM milionerzy.kody_aktywacji " +
-                        "JOIN milionerzy.uzytkownicy ON kody_aktywacji.id_uzytkownika = uzytkownicy.id_uzytkownika " +
+                String query = "SELECT kod FROM memorycard.kody_aktywacji " +
+                        "JOIN memorycard.uzytkownicy ON kody_aktywacji.id_uzytkownika = uzytkownicy.id_uzytkownika " +
                         "WHERE uzytkownicy.login = ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, login);
@@ -323,7 +282,7 @@ public class MyApiApplication {
 
         if (connection != null) {
             try {
-                String query = "SELECT mail FROM milionerzy.uzytkownicy WHERE login = ?";
+                String query = "SELECT mail FROM memorycard.uzytkownicy WHERE login = ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, login);
 
@@ -372,7 +331,7 @@ public class MyApiApplication {
                     Message.RecipientType.TO,
                     InternetAddress.parse(email)
             );
-            message.setSubject("Milionerzy - Kod aktywacyjny");
+            message.setSubject("Memory Card - Kod aktywacyjny");
 
             // Create the message part
             BodyPart messageBodyPart = new MimeBodyPart();
@@ -423,7 +382,7 @@ public class MyApiApplication {
         if (connection != null) {
             try {
                 // Aktualizacja flagi aktywacji
-                String updateActivationFlagQuery = "UPDATE milionerzy.uzytkownicy SET aktywowane = true WHERE login = ?";
+                String updateActivationFlagQuery = "UPDATE memorycard.uzytkownicy SET aktywowane = true WHERE login = ?";
                 PreparedStatement updateActivationFlagStatement = connection.prepareStatement(updateActivationFlagQuery);
                 updateActivationFlagStatement.setString(1, login);
 
@@ -454,8 +413,8 @@ public class MyApiApplication {
 
         if (connection != null) {
             try {
-                String query = "SELECT kod FROM milionerzy.kody_aktywacji " +
-                        "JOIN milionerzy.uzytkownicy ON kody_aktywacji.id_uzytkownika = uzytkownicy.id_uzytkownika " +
+                String query = "SELECT kod FROM memorycard.kody_aktywacji " +
+                        "JOIN memorycard.uzytkownicy ON kody_aktywacji.id_uzytkownika = uzytkownicy.id_uzytkownika " +
                         "WHERE uzytkownicy.login = ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, login);
@@ -491,7 +450,7 @@ public class MyApiApplication {
 
         if (connection != null) {
             try {
-                String query = "SELECT aktywowane FROM milionerzy.uzytkownicy WHERE login = ?";
+                String query = "SELECT aktywowane FROM memorycard.uzytkownicy WHERE login = ?";
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setString(1, login);
 
@@ -547,7 +506,7 @@ public class MyApiApplication {
                     Message.RecipientType.TO,
                     InternetAddress.parse(email)
             );
-            message.setSubject("Milionerzy - Wynik gry");
+            message.setSubject("Memory Card - Wynik gry");
 
             // Create the message part
             BodyPart messageBodyPart = new MimeBodyPart();

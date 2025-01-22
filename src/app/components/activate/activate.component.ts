@@ -60,11 +60,13 @@ export class ActivateComponent implements OnInit {
           this.router.navigate(['/login']); 
         } else {
           this.activationMessage = 'Invalid activation code or error activating user.';
+          
         }
       },
       (error) => {
         console.error('Error activating user:', error);
         this.activationMessage = 'An error occurred during activation.';
+        this.router.navigate(['/login']); 
       }
     );
   }

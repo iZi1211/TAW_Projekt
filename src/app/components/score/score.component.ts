@@ -22,7 +22,8 @@ export class ScoreComponent implements OnInit {
     console.log('Score received from GameComponent:', this.score);
   
     // Pobranie loginu z localStorage
-    this.login = localStorage.getItem('username') || 'Anonymous';
+    console.log(this.login);
+    this.login = localStorage.getItem('loggedInUser') || 'Anonymous';
     this.sendScoreToDatabase();
 
   

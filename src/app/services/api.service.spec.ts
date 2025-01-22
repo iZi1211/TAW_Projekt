@@ -23,6 +23,56 @@ describe('ApiService', () => {
     httpMock.verify();
   });
 
+  it('should successfully communicate with the backend when fetching leaderboard data', () => {
+    // Arrange integ
+    const mockResponse = '1. John Doe: 200\n2. Jane Smith: 180';
+    
+    // Act
+    service.getRanking().subscribe((response) => {
+      // Assert
+      expect(response).toBe(mockResponse);
+    });
+
+    const req = httpMock.expectOne('http://localhost:8080/ranking');
+    expect(req.request.method).toBe('GET');
+    req.flush(mockResponse); // Send the mock response
+  });
+
+  it('should return proper status when submitting score', () => {
+    // Arrange
+    const username = 'testUser';
+    const score = 100;
+    const mockResponse = 'Score saved successfully';
+  
+    // Act
+    service.sendScore(username, score).subscribe((response) => {
+      // Assert
+      expect(response).toBe(mockResponse);
+    });
+  
+    const req = httpMock.expectOne(`http://localhost:8080/saveScore?login=${username}&score=${score}`);
+    expect(req.request.method).toBe('POST');
+    req.flush(mockResponse); // Send the mock response
+  });
+
+  it('should return user activation status after checking with backend', () => {
+    // Arrange
+    const mockResponse = 'Activated';
+    const username = 'testUser';
+  
+    // Act
+    service.getActivationStatus(username).subscribe((response) => {
+      // Assert
+      expect(response).toBe(mockResponse);
+    });
+
+    const req = httpMock.expectOne(`http://localhost:8080/getActivationStatus?login=${username}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockResponse); // Send the mock response
+  });
+
+
+
   it('should send activation code and return success', () => {
     // Arrange
     const mockResponse = 'Activation code sent';
@@ -77,7 +127,7 @@ describe('ApiService', () => {
   });
 
   it('should log in successfully and return a token', () => {
-    // Arrange
+    // Arrange   asdasdasd
     const username = 'testUser';
     const password = 'password123';
     const mockResponse = 'Login Successful';
@@ -94,7 +144,7 @@ describe('ApiService', () => {
   });
 
   it('should send score successfully', () => {
-    // Arrange
+    // Arrange   asdadadasdasd
     const username = 'testUser';
     const score = 100;
     const mockResponse = 'Score sent successfully';
@@ -111,7 +161,7 @@ describe('ApiService', () => {
   });
 
   it('should send score via email', () => {
-    // Arrange
+    // Arrange asdasdasdasdasd
     const username = 'testUser';
     const score = 100;
     const mockResponse = 'Score sent via email successfully';

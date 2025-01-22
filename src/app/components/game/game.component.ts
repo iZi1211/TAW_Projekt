@@ -32,7 +32,7 @@ const animalImages = [
 export class GameComponent implements OnInit, OnDestroy {
   score: number = 0;
   timer: number = 60;  // Domyślny czas
-  lives: number = 3; // Liczba żyć
+  lives: number = 5; // Liczba żyć
   tiles: any[] = [];
   infiniteGameMode: boolean = false;
   gameInterval: any;

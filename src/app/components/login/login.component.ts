@@ -40,6 +40,7 @@ export class LoginComponent {
     this.apiService.getActivationStatus(this.username).subscribe({
       next: (response: string) => {
         console.log('Activation status response:', response);  // Sprawdzanie odpowiedzi
+        console.log('username:',this.username);
         if (response === 'Not Activated') {
           this.router.navigate(['/activate'], { state: { username: this.username } });
         } else if (response === 'Activated') {
